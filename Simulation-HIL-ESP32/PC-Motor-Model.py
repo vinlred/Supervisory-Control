@@ -50,18 +50,18 @@ if monitor.is_open:
                 monitor.write(("%f;%f\r\n" % (yn, posisi)).encode("utf-8"))
                 
                 plt.clf()
-                plt.axis([-100, 3000, -3, 3])
+                plt.axis([-100, 3000, -4, 4])
                 plt.plot(ts, ys, label = "Speed")
-                plt.plot(ts, xs, label = "outpid")
+                #plt.plot(ts, xs, label = "outpid")
                 plt.legend()
                 plt.draw()
                 plt.pause(0.1)
                 
         except Exception as e:
             plt.clf()
-            plt.axis([-100, 3000, -3, 3])
+            plt.axis([-100, 3000, -4, 4])
             plt.plot(ts, ys, label = "Speed")
-            plt.plot(ts, xs, label = "outpid")
+            #plt.plot(ts, xs, label = "outpid")
             plt.legend()
             plt.savefig("Output-Motor.jpg")
             print(e)
