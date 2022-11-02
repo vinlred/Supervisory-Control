@@ -18,19 +18,15 @@ void fsm(int *input,int *state, float *target,float *position){
 		case STATE_CLOSE:
 		{
 			if(*input == 1){
-				*state = ACCEL_UP;
+				*state = ACCEL_UP_OPEN;
 				*target = 1;
 			}
 			break;
 		}
-		case ACCEL_UP:
+		case ACCEL_UP_OPEN:
 		{
 			if(*position >= 1){
 				*state = OPENING;
-				*target = 0;
-			}
-			else if(*position <= 0){
-				*state = STATE_CLOSE;
 				*target = 0;
 			}
 			break;
@@ -38,27 +34,15 @@ void fsm(int *input,int *state, float *target,float *position){
 		case OPENING:
 		{
 			if(*position >= 2){
-				*state = ACCEL_DOWN;
+				*state = ACCEL_DOWN_OPEN;
 				*target = -1;
 			}
 			break;
 		}
-		case CLOSING:
-		{
-			if(*position <= 1){
-				*state = ACCEL_UP;
-				*target = 1;
-			}
-			break;
-		}
-		case ACCEL_DOWN:
+		case ACCEL_DOWN_OPEN:
 		{
 			if(*position >= 3){
 				*state = STATE_OPEN;
-				*target = 0;
-			}
-			else if(*position <= 2){
-				*state = CLOSING;
 				*target = 0;
 			}
 			break;
@@ -66,8 +50,32 @@ void fsm(int *input,int *state, float *target,float *position){
 		case STATE_OPEN:
 		{
 			if (*input == 1){
-				*state = ACCEL_DOWN;
+				*state = ACCEL_DOWN_CLOSE;
 				*target = -1;
+			}
+			break;
+		}
+		case ACCEL_DOWN_CLOSE:
+		{
+			if(*position <= 2){
+				*state = CLOSING;
+				*target = 0;
+			}
+			break;
+		}
+		case CLOSING:
+		{
+			if(*position <= 1){
+				*state = ACCEL_UP_CLOSE;
+				*target = 1;
+			}
+			break;
+		}
+		case ACCEL_UP_CLOSE:
+		{
+			if(*position <= 0){
+				*state = STATE_CLOSE;
+				*target = 0;
 			}
 			break;
 		}
