@@ -22,7 +22,7 @@ float position1 = 0;
 float outpid = 0;
 float target1 = 0;
 int button = 0;
-int next_valid = 0;
+int serial_valid = 0;
 int state1 = 0;
 
 float error = 0; 
@@ -49,10 +49,10 @@ void door_control(void *pvParam){
 		TickType_t xLastWakeTime1 = xTaskGetTickCount();
 
         if(scanf("%f;%f", &accel, &position1) == 2){
-            next_valid = 1;
+            serial_valid = 1;
         }
 
-        if(next_valid == 1 ){
+        if(serial_valid == 1 ){
 			fsm(&button, &state1, &target1, &position1);
 			
 			error = target1 - accel;
@@ -62,7 +62,7 @@ void door_control(void *pvParam){
 			outpid = kp * error + ki * ierror + kd * derror;
 			
 			printf("%.8f\r\n",outpid);
-			next_valid = 0;
+			serial_valid = 0;
         }
         vTaskDelayUntil(&xLastWakeTime1, 30/portTICK_PERIOD_MS);
 	}
