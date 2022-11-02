@@ -1,12 +1,14 @@
 #ifndef FSMMOTOR_H
 #define FSMMOTOR_H
 
-#define STATE_CLOSE 0
-#define STATE_OPEN  1
-#define ACCEL_UP    2
-#define ACCEL_DOWN  3
-#define OPENING     4
-#define CLOSING     5
+#define STATE_CLOSE      0
+#define STATE_OPEN       1
+#define ACCEL_UP_OPEN    2
+#define ACCEL_DOWN_OPEN  3
+#define OPENING          4
+#define ACCEL_UP_CLOSE   5
+#define ACCEL_DOWN_CLOSE 6
+#define CLOSING          7
 
 #include <stdio.h>
 #include <stdlib.h>
