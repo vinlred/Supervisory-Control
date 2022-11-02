@@ -10,9 +10,9 @@
 #define TIMER_DIVIDER 16
 #define DEBOUNCE 50
 
-#define kp  0.8
-#define ki  0.3
-#define kd  0.0
+#define kp  10
+#define ki  5
+#define kd  1
 
 double current_time_sec = 0;
 double last_time_sec = 0;
